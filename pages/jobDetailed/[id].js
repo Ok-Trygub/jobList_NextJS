@@ -9,6 +9,8 @@ import ApplyButton from "../../components/ApplyButton";
 import Previous from "../../public/Previous";
 import Contacts from '../../components/Contacts';
 import Link from "next/link";
+import PostedDaysAgo from '/functions/postedDaysAgo';
+
 
 
 export const getServerSideProps = async (context) => {
@@ -41,6 +43,7 @@ export const getServerSideProps = async (context) => {
 const Job = ({userData}) => {
     console.log(userData)
 
+    const postedDays = PostedDaysAgo(userData.createdAt);
     const description = userData.description.split('\n');
     const compensationList = description[7].split('. ');
 
@@ -90,8 +93,7 @@ const Job = ({userData}) => {
                                 pb-1 lg:max-w-[501px] lg:p-0'>{userData.title}</h2>
 
                                 <div className='flex items-center justify-between pb-3.5 lg:p-0'>
-                                    <p className='lg:hidden font-light text-[13px] leading-[1.92]
-                                    tracking-[0.191905px] text-textGray'>Posted 2 days ago</p>
+                                    <p className='lg:hidden postCreatedAt'>Posted {postedDays} days ago</p>
 
                                     <div className='flex flex-col items-end lg:items-start'>
                                         <p className='lg:hidden text-[18px]
@@ -105,8 +107,7 @@ const Job = ({userData}) => {
                                 </div>
                             </div>
 
-                            <p className='hidden lg:block text-textGray roboto tracking-[-0.5625px] text-[18px]
-                                    text-textGray pb-2'>Posted 2 days ago</p>
+                            <p className='hidden lg:block postCreatedAt'>Posted {postedDays} days ago</p>
 
                             <div>
                                 {description.map((item, index) => {
