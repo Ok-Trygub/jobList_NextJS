@@ -1,26 +1,75 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+@layer base {
   body {
-    color: white;
-    background: black;
+    box-sizing: border-box;
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.33;
+    background-color: #E6E9F2;
+    color: #3A4562;
+  }
+
+  img {
+    max-width: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+}
+
+
+@layer components {
+  .cardShadow {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .jobDetails-text {
+    @apply roboto text-[18px] text-darkBlue tracking-[-0.5625px]
+  }
+
+  .jobDetails-textTile {
+    @apply text-[20px] text-darkBlue tracking-[-0.625px] leading-[1.25] font-bold
+  }
+
+  ::marker {
+    color: #5c637a;
+    width: 9px;
+    height: 9px;
+  }
+
+  .sectionTitle{
+    @apply text-[28px] leading-[1.21] tracking-[0.413333px] font-bold text-darkBlue
+  }
+
+  .additionalInfoUnit{
+    @apply w-[122px] md:w-[222px] h-[50px] px-3 border rounded-lg flex justify-center items-center
+    font-bold leading-[1] tracking-[-0.457143px]
+  }
+
+  .addressInfo{
+    @apply tracking-[-0.5px] leading-[1.43] lg:text-[18px]
+    tracking-[-0.5625px] lg:leading-[1.33]
+  }
+
+}
+
+@layer utilities {
+  .border-\[\#3A4562\] {
+    --tw-border-opacity: 0.13;
+  }
+
+  .text {
+    opacity: 0;
   }
 }
