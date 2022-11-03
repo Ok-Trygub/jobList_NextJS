@@ -10,6 +10,7 @@ import Previous from "../../public/Previous";
 import Contacts from '../../components/Contacts';
 import Link from "next/link";
 import PostedDaysAgo from '/functions/postedDaysAgo';
+import Head from "next/head";
 
 
 
@@ -40,19 +41,21 @@ export const getServerSideProps = async (context) => {
 }
 
 
+
 const Job = ({userData}) => {
-    console.log(userData)
 
     const postedDays = PostedDaysAgo(userData.createdAt);
     const description = userData.description.split('\n');
     const compensationList = description[7].split('. ');
 
-
     return (
         <div className='bg-white'>
+            <Head>
+                <title>Job Detailed</title>
+            </Head>
             <div className="container px-4 pt-6 pb-6 lg:pt-14 lg:pb-40">
 
-                <div className='lg:flex lg:gap-x-16 xl:gap-x-[134px] max-w-[1257px] m-auto'>
+                <div className='lg:flex lg:gap-x-8 xl:gap-x-[134px] max-w-[1257px] m-auto'>
                     <div>
                         <div
                             className='lg:border-b-2 lg:border-[#3A4562] lg:pb-2 lg:flex lg:items-center lg:justify-between'>
@@ -192,18 +195,17 @@ const Job = ({userData}) => {
                                     RETURN TO JOB BOARD
                                 </button>
                             </Link>
-
                         </div>
                     </div>
 
                     <div>
                         <h3 className='lg:hidden sectionTitle border-b-2 border-[#3A4562] pb-2.5 mb-5'>Contacts</h3>
-                        <Contacts
-                            name={userData.name}
-                            address={userData.address}
-                            phone={userData.phone}
-                            email={userData.email}
-                        />
+                            <Contacts
+                                name={userData.name}
+                                address={userData.address}
+                                phone={userData.phone}
+                                email={userData.email}
+                            />
                     </div>
                 </div>
             </div>
