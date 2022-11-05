@@ -1,7 +1,15 @@
 import {useState} from 'react';
 import cn from "classnames";
 
-const Bookmark = (props) => {
+
+interface BookmarkProps {
+    activeIcon: JSX.Element;
+    inActiveIcon: JSX.Element;
+}
+
+
+const Bookmark = (props:BookmarkProps) => {
+
     const {activeIcon, inActiveIcon} = props;
     const [bookmarkActive, setBookmarkActive] = useState(false);
 

@@ -10,11 +10,19 @@ import {GOOGLE_MAP_URL, GOOGLE_MAP_KEY} from "../utils/API_CONFIG";
 import PostedDaysAgo from '../functions/postedDaysAgo';
 
 
-const JobCard = (props) => {
+interface JobCardProps {
+    title: string;
+    name: string;
+    address: string;
+    pictures: string[];
+    location: { lat: number, long: number };
+    id: string;
+    createdAt: string;
+}
 
-    const {title, name, address, pictures, location, id, createdAt} = props.jobData;
+const JobCard = ({title, name, address, pictures, location, id, createdAt}: JobCardProps) => {
+
     const postedDays = PostedDaysAgo(createdAt);
-
     const [locationAddress, setLocationAddress] = useState();
 
 
@@ -45,8 +53,8 @@ const JobCard = (props) => {
                     <div className='w-full'>
                         <div className='flex justify-between font-light text-sm lg:hidden'>
                             {/*<StarRating/>*/}
-                            <p className='font-light text=[14px] leading-[1.21] tracking-[0.206667px] text-textGray'>Posted
-                                2 days ago</p>
+                            <p className='font-light text=[14px] leading-[1.21] tracking-[0.206667px] text-textGray'>Posted {postedDays} days
+                                ago</p>
                         </div>
 
                         <div>

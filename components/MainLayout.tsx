@@ -1,6 +1,10 @@
 import Head from "next/head";
 
-const MainLayout = ({children}) => {
+interface MainLayout {
+    children: JSX.Element;
+}
+
+const MainLayout = ({children}: MainLayout) => {
 
     return (
         <>

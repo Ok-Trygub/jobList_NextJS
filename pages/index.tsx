@@ -3,17 +3,24 @@ import {API_BASE_URL, Bearer_Token} from '../utils/API_CONFIG';
 import JobCard from "../components/JobCard";
 import Head from "next/head";
 import Pagination from "../components/Pagination";
+import jobPost from '../interfaces/jobPost';
+import {GetStaticProps} from "next";
 
 
-export const getStaticProps = async () => {
-    let responce = await fetch(API_BASE_URL, {
+interface JobsData {
+    jobs: jobPost[]
+}
+
+
+export const getStaticProps: GetStaticProps = async () => {
+    const responce = await fetch(API_BASE_URL, {
         method: 'GET',
         headers: {
             'Authorization': Bearer_Token,
         },
     });
 
-    let data = await responce.json()
+    const data: jobPost[] = await responce.json();
 
     if (!data) return {
         notFound: true,
@@ -27,7 +34,7 @@ export const getStaticProps = async () => {
 }
 
 
-export default function Home({jobs}) {
+export default function Home({jobs}: JobsData) {
     return (
         <>
             <MainLayout>
@@ -37,7 +44,7 @@ export default function Home({jobs}) {
 
                 <div className='container px-2 pt-2 pb-4 xl:px-0 lg:pt-7 lg:pb-16'>
                     <div className='pb-4'>
-                        {jobs.map((jobItem) => (
+                        {jobs.map((jobItem: jobPost) => (
                             <div className='mb-2' key={jobItem.id}>
                                 <JobCard jobData={jobItem}/>
                             </div>
@@ -47,7 +54,6 @@ export default function Home({jobs}) {
                     <div className='flex justify-center'>
                         <Pagination/>
                     </div>
-
                 </div>
             </MainLayout>
         </>
