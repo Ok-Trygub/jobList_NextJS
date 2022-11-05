@@ -8,7 +8,12 @@ import InactiveBookmark from "../public/InactiveBookmark";
 import {useEffect, useState} from "react";
 import {GOOGLE_MAP_URL, GOOGLE_MAP_KEY} from "../utils/API_CONFIG";
 import PostedDaysAgo from '../functions/postedDaysAgo';
+import jobPost from "../interfaces/jobPost";
 
+
+interface Props {
+    jobData:jobPost
+}
 
 interface JobCardProps {
     title: string;
@@ -20,7 +25,8 @@ interface JobCardProps {
     createdAt: string;
 }
 
-const JobCard = ({title, name, address, pictures, location, id, createdAt}: JobCardProps) => {
+const JobCard = (props:Props) => {
+    const {title, name, address, pictures, location, id, createdAt}:JobCardProps = props.jobData;
 
     const postedDays = PostedDaysAgo(createdAt);
     const [locationAddress, setLocationAddress] = useState();
