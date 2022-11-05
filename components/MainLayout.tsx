@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 interface MainLayout {
-    children: JSX.Element;
+    children: JSX.Element[];
 }
 
 const MainLayout = ({children}: MainLayout) => {

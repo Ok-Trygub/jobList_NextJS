@@ -21,7 +21,10 @@ interface currentJobData {
 }
 
 
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    console.log(context)
+
     const {id} = context.params;
 
 
