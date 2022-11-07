@@ -21,8 +21,6 @@ interface currentJobData {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    console.log(context)
-
     const {id} = context.query;
 
 
@@ -47,6 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
     }
 }
+
 
 
 const Job = ({jobData}: currentJobData) => {
@@ -148,9 +147,9 @@ const Job = ({jobData}: currentJobData) => {
                             <h3 className='sectionTitle border-b-2 border-[#3A4562] pb-3 mb-3'>Attached images</h3>
 
                             <div className='flex gap-2 lg:gap-3 justify-center lg:justify-start pb-[60px]'>
+
                                 {jobData.pictures.map((item, index) => (
-                                    // <Image key={index} src={item} width={2/6} height={133} alt="job_image" className='rounded-lg'/>
-                                    <img key={index} src={item} alt="job_image" className='w-2/6 h-[133px] rounded-lg'/>
+                                        <Image key={index} width={200} height={133} src={item} alt="job_image"  className='w-2/6 h-[133px] rounded-lg'/>
                                 ))}
                             </div>
                         </div>
@@ -185,9 +184,11 @@ const Job = ({jobData}: currentJobData) => {
                             <h3 className='sectionTitle border-b-2 border-[#3A4562] pb-3 mb-4'>Attached images</h3>
 
                             <div className='flex gap-2 lg:gap-3 justify-center lg:justify-start pb-[60px]'>
+
                                 {jobData.pictures.map((item, index) => (
-                                    <img key={index} src={item} alt="job_image"
-                                         className='w-2/6 lg:w-[200px] lg:h-[133px] rounded-lg'/>
+                                    <Image key={index} src={item} alt="job_image" width={200}
+                                           height={133}
+                                           className='w-2/6 lg:w-[200px] lg:h-[133px] rounded-lg'/>
                                 ))}
                             </div>
                         </div>

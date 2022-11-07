@@ -1,4 +1,6 @@
 import AddressLocation from "../public/AddressLocation";
+import BgImg from '../public/contacts_bg_round.png';
+import Image from "next/image";
 
 interface ContactsProps {
     address: string;
@@ -14,8 +16,9 @@ const Contacts = (props: ContactsProps) => {
     return (
         <div>
             <div
-                className='bg-[#2A3047] border rounded-t-lg text-[#E8EBF3] py-8 lg:w-[330px] lg:h-[215px] xl:w-[402px] flex justify-center'>
-                <div>
+                className='bg-[#2A3047] border rounded-t-lg text-[#E8EBF3] py-8 lg:w-[330px] lg:h-[215px] xl:w-[402px] flex justify-center relative overflow-hidden'>
+                <Image src={BgImg} alt='bg_img' className='absolute top-0 left-0 h-[273px] w-2/4 hidden lg:block'/>
+                <div className='z-10'>
                     <p className='font-bold tracking-[0.23619px] leading-[1.18] text-[#E7EAF0] lg:text-[20px]
                  leading-[1.25] tracking-[-0.625px] pb-2 lg:pb-4'>{name}</p>
 

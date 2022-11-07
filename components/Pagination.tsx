@@ -9,7 +9,7 @@ const Pagination = () => {
         text-[#70778B] font-bold text-[16px] leading-[1.19] lg:text-[21px] tracking-[1.33333px]
         lg:tracking-[1.73333px] gap-4 lg:w-[515px]'>
             <span>
-                <Image src={ArrowLeft} width={14} height={18} alt="arrow_left"/>
+                <Image src={ArrowLeft} width={14} height={18} alt="arrow_left" className='w-auto h-auto'/>
             </span>
             <div className="pl-[42.5px] lg:pl-14 ml-2 lg:ml-8 border-l border-[#DEE3EF]">
                 <span className='paginationItem'>1</span>
@@ -23,7 +23,7 @@ const Pagination = () => {
                 <span className='paginationItem'>18</span>
             </div>
             <span>
-                <Image src={ArrowRight} width={14} height={18} alt="arrow_right"/>
+                <Image src={ArrowRight} width={14} height={18} alt="arrow_right" className='w-auto h-auto'/>
             </span>
         </div>
     );

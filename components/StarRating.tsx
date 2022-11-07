@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
 import StarRatings from 'react-star-ratings';
 
 
@@ -7,7 +7,9 @@ import StarRatings from 'react-star-ratings';
 const StarRating = ({size = 10}) => {
     const [rating, setRating] = useState(0);
 
-    const changeRating = (newRating) => {
+    const changeRating = (newRating: number) => {
+        console.log(newRating)
+
         setRating(newRating);
     }
 
