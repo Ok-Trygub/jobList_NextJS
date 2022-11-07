@@ -24,6 +24,8 @@ const StarRating = ({size = 10}) => {
 
 
 
+// Второй вариант:
+
 // import {useState} from 'react';
 // import StarRatings from 'react-star-ratings';
 //

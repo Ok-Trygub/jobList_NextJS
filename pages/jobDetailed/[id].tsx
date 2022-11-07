@@ -12,7 +12,7 @@ import Link from "next/link";
 import PostedDaysAgo from '../../functions/postedDaysAgo';
 import Head from "next/head";
 import Image from "next/image";
-import {GetServerSideProps, NextPageContext} from 'next';
+import {GetServerSideProps} from 'next';
 import jobPost from "../../interfaces/jobPost";
 
 
@@ -20,12 +20,10 @@ interface currentJobData {
     jobData: jobPost
 }
 
-
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
     console.log(context)
 
-    const {id} = context.params;
+    const {id} = context.query;
 
 
     let responce = await fetch(API_BASE_URL, {

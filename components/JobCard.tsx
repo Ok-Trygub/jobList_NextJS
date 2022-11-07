@@ -58,7 +58,7 @@ const JobCard = (props:Props) => {
 
                     <div className='w-full'>
                         <div className='flex justify-between font-light text-sm lg:hidden'>
-                            {/*<StarRating/>*/}
+                            <StarRating/>
                             <p className='font-light text=[14px] leading-[1.21] tracking-[0.206667px] text-textGray'>Posted {postedDays} days
                                 ago</p>
                         </div>
@@ -90,7 +90,7 @@ const JobCard = (props:Props) => {
 
                 <div className='hidden lg:flex shrink-0'>
                     <div className='flex items-center pr-8'>
-                        {/*<StarRating size={19}/>*/}
+                        <StarRating size={19}/>
                     </div>
 
                     <div className='flex flex-col justify-between items-end'>
