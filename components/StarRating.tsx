@@ -1,18 +1,26 @@
 import {useState} from 'react';
+import dynamic from 'next/dynamic';
 // @ts-ignore
-import StarRatings from 'react-star-ratings';
+const StarRatings = dynamic(import('react-star-ratings'), { ssr: false });
+
+
+type test = {
+    rating:number;
+    setRating:void
+}
 
 
 const StarRating = ({size = '10px'}) => {
-    const [rating, setRating] = useState(0);
 
+    const [rating, setRating] = useState<number>(0);
 
-    const changeRating = (newRating:number) => {
+    const changeRating = (newRating:number):void => {
         setRating(newRating);
     }
 
     return (
         <StarRatings
+            // @ts-ignore
             rating={rating}
             starEmptyColor='rgba(135, 141, 157, 1)'
             starRatedColor='rgba(56, 65, 93, 1)'

@@ -30,7 +30,7 @@ const JobCard = (props:Props) => {
     const {title, name, address, pictures, location, id, createdAt}:JobCardProps = props.jobData;
 
     const postedDays = PostedDaysAgo(createdAt);
-    const [locationAddress, setLocationAddress] = useState();
+    const [locationAddress, setLocationAddress] = useState<string>();
 
 
     useEffect(() => {
@@ -38,8 +38,8 @@ const JobCard = (props:Props) => {
             let responce = await fetch(
                 `${GOOGLE_MAP_URL}?latlng=${location.lat},${location.long}&key=${GOOGLE_MAP_KEY}`);
 
-            let data = await responce.json()
-            let address = data.results[0].formatted_address;
+            let data = await responce.json();
+            let address:string = data.results[0].formatted_address;
 
             setLocationAddress(address)
         }
