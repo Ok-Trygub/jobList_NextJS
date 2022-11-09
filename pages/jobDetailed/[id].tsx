@@ -214,6 +214,7 @@ const Job = ({jobData}: currentJobData) => {
                             address={jobData.address}
                             phone={jobData.phone}
                             email={jobData.email}
+                            location={jobData.location}
                         />
                     </div>
                 </div>

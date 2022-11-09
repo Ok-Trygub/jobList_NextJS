@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.16.1",
     "autoprefixer": "^10.4.13",
     "classnames": "^2.3.2",
     "next": "13.0.1",
     "postcss": "^8.4.18",
     "react": "18.2.0",
+    "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "18.2.0",
-    "react-star-ratings": "^2.3.0"
+    "react-star-ratings": "^2.3.0",
+    "use-places-autocomplete": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",

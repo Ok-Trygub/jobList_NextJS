@@ -1,22 +1,42 @@
 import AddressLocation from "../public/AddressLocation";
 import BgImg from '../public/contacts_bg_round.png';
 import Image from "next/image";
+import Map from './Map/Map';
+import {GOOGLE_MAP_KEY} from '../utils/API_CONFIG';
+import {useJsApiLoader} from '@react-google-maps/api';
+import {useState} from "react";
+import ContactsProps from '../interfaces/ContactsProps'
 
-interface ContactsProps {
-    address: string;
-    email: string;
-    name: string;
-    phone: string;
+
+interface CenterProps {
+    lat: number,
+    lng: number,
 }
 
 
 const Contacts = (props: ContactsProps) => {
-    const {name, address, phone, email} = props;
+    const {name, address, phone, email, location} = props;
+
+
+    const [center, setCenter] = useState<CenterProps>(
+        {
+            lat: location.lat,
+            lng: location.long,
+        }
+    );
+
+
+    const {isLoaded} = useJsApiLoader({
+        id: 'google-map-script',
+        language: 'de',
+        googleMapsApiKey: GOOGLE_MAP_KEY,
+    });
+
 
     return (
-        <div>
+        <div className='w-full lg:w-[330px] xl:w-[402px]'>
             <div
-                className='bg-[#2A3047] border rounded-t-lg text-[#E8EBF3] py-8 lg:w-[330px] lg:h-[215px] xl:w-[402px] flex justify-center relative overflow-hidden'>
+                className='bg-[#2A3047] border rounded-t-lg text-[#E8EBF3] py-8 h-[215px] w-full flex justify-center relative overflow-hidden'>
                 <Image src={BgImg} alt='bg_img' className='absolute top-0 left-0 h-[273px] w-2/4 hidden lg:block'/>
                 <div className='z-10'>
                     <p className='font-bold tracking-[0.23619px] leading-[1.18] text-[#E7EAF0] lg:text-[20px]
@@ -36,12 +56,11 @@ const Contacts = (props: ContactsProps) => {
             </div>
 
             <div>
-                <iframe className='w-full border rounded-b-lg lg:h-[215px]'
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.454072500228!2d30.745722615591774!3d46.47932057912614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6319e4e946bef%3A0x9e6a86ee545f4d30!2z0YPQuy4g0JrQsNC90LDRgtC90LDRjywgMjIsINCe0LTQtdGB0YHQsCwg0J7QtNC10YHRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwgNjUwMDA!5e0!3m2!1sru!2sua!4v1630500403216!5m2!1sru!2sua"
-                        loading="lazy"></iframe>
+                {isLoaded ? <Map center={center}/> : <h2>Loading...</h2>}
             </div>
         </div>
     );
+
 };
 
 export default Contacts;
