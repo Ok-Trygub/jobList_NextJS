@@ -15,8 +15,8 @@ interface CenterProps {
 
 
 const Contacts = (props: ContactsProps) => {
-    const {name, address, phone, email, location} = props;
 
+    const {name, address, phone, email, location} = props;
 
     const [center, setCenter] = useState<CenterProps>(
         {
@@ -31,7 +31,6 @@ const Contacts = (props: ContactsProps) => {
         language: 'de',
         googleMapsApiKey: GOOGLE_MAP_KEY,
     });
-
 
     return (
         <div className='w-full lg:w-[330px] xl:w-[402px]'>

@@ -13,7 +13,7 @@ import Image from "next/image";
 
 
 interface Props {
-    jobData:jobPost
+    jobData: jobPost
 }
 
 interface JobCardProps {
@@ -26,8 +26,8 @@ interface JobCardProps {
     createdAt: string;
 }
 
-const JobCard = (props:Props) => {
-    const {title, name, address, pictures, location, id, createdAt}:JobCardProps = props.jobData;
+const JobCard = (props: Props) => {
+    const {title, name, address, pictures, location, id, createdAt}: JobCardProps = props.jobData;
 
     const postedDays = PostedDaysAgo(createdAt);
     const [locationAddress, setLocationAddress] = useState<string>();
@@ -39,7 +39,7 @@ const JobCard = (props:Props) => {
                 `${GOOGLE_MAP_URL}?latlng=${location.lat},${location.long}&key=${GOOGLE_MAP_KEY}`);
 
             let data = await responce.json();
-            let address:string = data.results[0].formatted_address;
+            let address: string = data.results[0].formatted_address;
 
             setLocationAddress(address)
         }
@@ -53,12 +53,13 @@ const JobCard = (props:Props) => {
 
                 <div className='flex'>
                     <div>
-                        <Image src={pictures[0]} alt="job_logo" width={66} height={66} className='w-[66px] h-[66px] lg:w-[85px] lg:h-[85px] rounded-full mr-5 mt-10 lg:mt-0 lg:mr-[26px]'/>
+                        <Image src={pictures[0]} alt="job_logo" width={66} height={66}
+                               className='w-[66px] h-[66px] lg:w-[85px] lg:h-[85px] rounded-full mr-5 mt-10 lg:mt-0 lg:mr-[26px]'/>
                     </div>
 
                     <div className='w-full'>
                         <div className='flex justify-between font-light text-sm lg:hidden'>
-                            <StarRating />
+                            <StarRating/>
                             <p className='font-light text=[14px] leading-[1.21] tracking-[0.206667px] text-textGray'>Posted {postedDays} days
                                 ago</p>
                         </div>

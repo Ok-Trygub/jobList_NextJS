@@ -9,11 +9,11 @@ import ApplyButton from "../../components/ApplyButton";
 import Previous from "../../public/Previous";
 import Contacts from '../../components/Contacts';
 import Link from "next/link";
-import PostedDaysAgo from '../../functions/postedDaysAgo';
 import Head from "next/head";
 import Image from "next/image";
 import {GetServerSideProps} from 'next';
 import jobPost from "../../interfaces/jobPost";
+import JobDetailedText from '../../components/jobDetailedText';
 
 
 interface currentJobData {
@@ -31,11 +31,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         },
     });
 
-    let data:jobPost[]  = await responce.json();;
-
-    if (!data) return {
-        notFound: true,
-    }
+    let data: jobPost[] = await responce.json();
+    if (!data.length) throw new Error('no data');
 
     let currentJobData = data.find((user: jobPost) => user.id === id);
 
@@ -47,12 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 
-
 const Job = ({jobData}: currentJobData) => {
-
-    const postedDays = PostedDaysAgo(jobData.createdAt);
-    const description = jobData.description.split('\n');
-    const compensationList = description[7].split('. ');
 
     return (
         <div className='bg-white'>
@@ -97,50 +89,17 @@ const Job = ({jobData}: currentJobData) => {
                         </div>
 
                         <main>
-                            <div className='lg:flex shrink-0 justify-between items-start  lg:pb-2'>
-                                <h2 className='font-bold text-[24px] leading-[1.25] tracking-[-0.75px] text-darkBlue
-                                pb-1 lg:max-w-[501px] lg:p-0'>{jobData.title}</h2>
+                            <JobDetailedText
+                                createdAt={jobData.createdAt}
+                                title={jobData.title}
+                                salary={jobData.salary}
+                                description={jobData.description}
+                            />
 
-                                <div className='flex items-center justify-between pb-3.5 lg:p-0'>
-                                    <p className='lg:hidden postCreatedAt'>Posted {postedDays} days ago</p>
-
-                                    <div className='flex flex-col items-end lg:items-start'>
-                                        <p className='lg:hidden text-[18px]
-                                    tracking-[-0.5625px] text-darkBlue'>Brutto, per year</p>
-                                        <p className='font-bold text-darkBlue tracking-[-0.625px] text-[20px] leading-[1.25]
-                                        pt-1 lg:pt-0 lg:pb-1'>{jobData.salary}</p>
-
-                                        <p className='hidden lg:block roboto text-darkBlue tracking-[-0.5625px] text-[18px]'>
-                                            Brutto, per year</p>
-                                    </div>
-                                </div>
+                            <div className='pt-9 pb-[135px] lg:pb-[86px] flex justify-center lg:justify-start'>
+                                <ApplyButton/>
                             </div>
 
-                            <p className='hidden lg:block postCreatedAt'>Posted {postedDays} days ago</p>
-
-                            <div>
-                                {description.map((item, index) => {
-                                    if (item.trim() === '') return null;
-
-                                    if (item.includes('Responsopilities') || item.includes('Compensation & Benefits')) return (
-                                        <h4 key={index} className='jobDetails-textTile pb-3'>{item}</h4>
-                                    )
-
-                                    if (index === 7) return (
-                                        <ul key={index} className='jobDetails-text list-square pl-4 lg:pl-4 lg:pl-1'>
-                                            {compensationList.map((item, index) => (
-                                                <li key={index}>{item}</li>
-                                            ))}
-                                        </ul>
-                                    )
-
-                                    return <p key={index} className='jobDetails-text pb-7'>{item}</p>
-                                })}
-
-                                <div className='pt-9 pb-[135px] lg:pb-[86px] flex justify-center lg:justify-start'>
-                                    <ApplyButton/>
-                                </div>
-                            </div>
                         </main>
 
                         <div className='lg:hidden'>
@@ -149,7 +108,8 @@ const Job = ({jobData}: currentJobData) => {
                             <div className='flex gap-2 lg:gap-3 justify-center lg:justify-start pb-[60px]'>
 
                                 {jobData.pictures.map((item, index) => (
-                                        <Image key={index} width={200} height={133} src={item} alt="job_image"  className='w-2/6 h-[133px] rounded-lg'/>
+                                    <Image key={index} width={200} height={133} src={item} alt="job_image"
+                                           className='w-2/6 h-[133px] rounded-lg'/>
                                 ))}
                             </div>
                         </div>

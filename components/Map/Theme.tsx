@@ -106,7 +106,7 @@ export const defaultTheme = [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#193a55"
+                "color": "#2b3752"
             }
         ]
     },
@@ -124,17 +124,7 @@ export const defaultTheme = [
                 "weight": "0.01"
             }
         ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "lightness": -20
-            }
-        ]
     }
 ]
-
 
 export default defaultTheme;

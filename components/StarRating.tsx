@@ -1,20 +1,15 @@
 import {useState} from 'react';
 import dynamic from 'next/dynamic';
 // @ts-ignore
-const StarRatings = dynamic(import('react-star-ratings'), { ssr: false });
+const StarRatings = dynamic(import('react-star-ratings'), {ssr: false});
 
-
-type test = {
-    rating:number;
-    setRating:void
-}
 
 
 const StarRating = ({size = '10px'}) => {
 
     const [rating, setRating] = useState<number>(0);
 
-    const changeRating = (newRating:number):void => {
+    const changeRating = (newRating: number): void => {
         setRating(newRating);
     }
 

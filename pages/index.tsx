@@ -21,10 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
     });
 
     const data: jobPost[] = await responce.json();
-
-    if (!data) return {
-        notFound: true,
-    }
+    if (!data.length) throw new Error('no data');
 
     return {
         props: {
