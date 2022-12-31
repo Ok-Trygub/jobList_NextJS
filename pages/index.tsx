@@ -40,7 +40,7 @@ export default function Home({jobs}: JobsData) {
                 </Head>
 
                 <div className='container px-2 pt-2 pb-4 xl:px-0 lg:pt-7 lg:pb-16'>
-                    <div className='pb-4'>
+                    <div className='pb-4  px-6'>
                         {jobs.map((jobItem: jobPost) => (
                             <div className='mb-2' key={jobItem.id}>
                                 <JobCard jobData={jobItem}/>
