@@ -11,5 +11,4 @@ On click on the "Job title", a detailed job page opens.
 
 ![Alt-текст](./assets/images/jobList.png)
 
-
 ![Alt-текст](./assets/images/jobDetails.png)
